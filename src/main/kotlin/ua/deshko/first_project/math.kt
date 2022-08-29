@@ -4,42 +4,52 @@ val b:Int = scan.nextInt()
 val c:Int = scan.nextInt()
 
 
-fun main(args: Array<String>) {
+fun summ (a:Int, b:Int) {
     var summ = a + b
-    println("$a + $b = $summ")  //сумма двух чисел
-
+    println("$a + $b = $summ")
+}
+fun raznost (a:Int,b:Int){
     var raznost = a - b
-    println("$a - $b = $raznost")   //разница двух чисел
+    println("$a - $b = $raznost")
+}
 
+fun delenie (a:Int,b: Int){
     var delenie = a / b
-    println("$a / $b = $delenie")   //делени двух чисел
-
+    println("$a / $b = $delenie")
+}
+fun stepen (a: Int, b: Int){
     var stepen = a
     for (x in 1..b-1){
         stepen = stepen * a
     }
-    println("$a v stepeni $b = $stepen ") //число в степени х
+    println("$a v stepeni $b = $stepen")
+}
 
-    var mass:Array<Int> = arrayOf(a,b,c)
-    var summ_2 = mass[0] + mass[1] + mass[2]
-    println("$a + $b + $c = $summ_2")   //сумма чисел в диапазоне
-
+fun factorial (a:Int){
     var factorial = 1
     print("$a! -> ")
     for (x in 1..a){
         factorial = factorial * x
         print("$x * ")
     }
-    print("ravno $factorial")       //факториал числа
-    println()
+    println("ravno $factorial")
+}
 
-    if (a*a+b*b == c*c){
+fun treug (a:Int, b: Int, c:Int) {
+    if (a*a+b*b == c*c) {
         println("a = $a, b = $b , c (catet) = $c -> Treugolnik pryamougolniy")
     }
     else {
-    println("a = $a, b = $b , c (catet)= $c -> Treugolnik ne pryamougolniy")
+        println("a = $a, b = $b , c (catet)= $c -> Treugolnik ne pryamougolniy")
     }
 }
 
+fun main(args: Array<String>) {
+    summ(a, b)
+    raznost(a,b)
+    delenie(a,b)
+    stepen(a,b)
+    factorial(a)
+    treug(a,b,c)
 
-
+}
