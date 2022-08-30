@@ -1,55 +1,38 @@
-val scan = java.util.Scanner(System.`in`)
-val a:Int = scan.nextInt()
-val b:Int = scan.nextInt()
-val c:Int = scan.nextInt()
 
-
-fun summ (a:Int, b:Int) {
+fun summ (a:Int, b:Int):Int {
     var summ = a + b
-    println("$a + $b = $summ")
+    return summ
 }
-fun raznost (a:Int,b:Int){
+fun difference (a:Int,b:Int):Int{
     var raznost = a - b
-    println("$a - $b = $raznost")
+    return raznost
 }
 
-fun delenie (a:Int,b: Int){
+fun segmentation (a:Float,b: Float):Float{
     var delenie = a / b
-    println("$a / $b = $delenie")
+    return delenie
 }
-fun stepen (a: Int, b: Int){
+fun exponentiate (a: Int, b: Int):Int{
     var stepen = a
     for (x in 1..b-1){
         stepen = stepen * a
     }
-    println("$a v stepeni $b = $stepen")
+    return stepen
 }
 
-fun factorial (a:Int){
+fun factorial (a:Int):Int{
     var factorial = 1
     print("$a! -> ")
     for (x in 1..a){
         factorial = factorial * x
         print("$x * ")
     }
-    println("ravno $factorial")
+    return factorial
 }
 
-fun treug (a:Int, b: Int, c:Int) {
-    if (a*a+b*b == c*c) {
-        println("a = $a, b = $b , c (catet) = $c -> Treugolnik pryamougolniy")
-    }
-    else {
-        println("a = $a, b = $b , c (catet)= $c -> Treugolnik ne pryamougolniy")
-    }
+fun triangle (a:Int, b: Int): Boolean {
+    if (a != b) {
+        return false
+    } else {return true}
 }
 
-fun main(args: Array<String>) {
-    summ(a, b)
-    raznost(a,b)
-    delenie(a,b)
-    stepen(a,b)
-    factorial(a)
-    treug(a,b,c)
-
-}
