@@ -2,95 +2,123 @@
 fun summ (a:Int, b:Int):Int = a + b
 fun difference (a:Int,b:Int):Int = a - b
 fun multipl (a:Int, b: Int) :Int = a * b
-fun segmentation (a:Int,b: Int):Float{
-    val a2 = a.toFloat()
-    val b2 = b.toFloat()
-    if (b2 == 0.0F){
-        return 0.0F
-    }
-    else {
+fun segmentation (numerator:Int, denominator: Int):Float{
+    val a2 = numerator.toFloat()
+    val b2 = denominator.toFloat()
+    if (b2 > 0F){
         return a2/b2
     }
+return a2/b2
 }
-fun exponentiate (a: Int, b: Int): Float {
-    var stepen = a.toFloat()
+fun exponentiate (baseOfDegree: Int, degree: Int): Float {
+    var stepen = baseOfDegree.toFloat()
     var x = 1
-        while (x < b) {
-            stepen = stepen * a
+        while (x < degree) {
+            stepen = stepen * baseOfDegree
             x++
         }
-    if (b>0) return stepen else if(b<0) return 1/stepen else return 1.0F
+    if (degree>0){
+        return stepen
+    }
+    else if(degree<0){
+        return 1/stepen
+    }
+    else return 1.0F
 }
 
-fun factorial (a:Int):Int{
+fun factorial (base:Int):Int{
+    var x = 1
     var factorial = 1
-    print("$a! -> ")
-    for (x in 1..a){
+    while (base < 0 ){
+        break
+    }
+    while (0 < base && x <= base){
         factorial = factorial * x
-        print("$x * ")
+        x = x + 1
+    }
+    while (base == 0) {
+        return 0
     }
     return factorial
 }
 
-fun is_triangle (a:Int, b: Int, c:Int):Boolean{
+
+fun isTriangle (a:Int, b: Int, c:Int):Boolean{
     if (summ(a,b)>c && summ(a,c)>b && summ(b,c)>a){
     return true
-    } else {
-        return false
     }
+    return false
 }
-fun choose_max (a: Int, b: Int, c: Int):Int {
+fun maxOfThree (a: Int, b: Int, c: Int):Int {
     val arr = arrayOf(a,b,c)
-    var max = if (arr[0]> arr[1] && arr[0]>arr[2]) {
-        return arr[0].toInt()
+    var smalest = arr[0]
+    for (index in arr.indices){
+        if (smalest < arr[index]){
+            smalest = arr[index]
+        }
     }
-    else if (arr[1]> arr[2] && arr[1]>arr[0]){
-        return arr[1].toInt()
-    }
-    else{
-        return arr[2].toInt()
-    }
+    return smalest
 }
-fun choose_min (a: Int, b: Int, c: Int):Int {
-    val arr = arrayOf(a,b,c)
-    var min = if (arr[0]< arr[1] && arr[0]<arr[2]) {
-        return arr[0].toInt()
+fun chooseMax(arr:Array<Int>):Int{
+    var largest_elem = arr[0]
+    for (index in arr.indices){
+        if (largest_elem < arr[index]){
+            largest_elem = arr[index]
+        }
     }
-    else if (arr[1]< arr[2] && arr[1]<arr[0]){
-        return arr[1].toInt()
-    }
-    else{
-        return arr[2].toInt()
-    }
+    return largest_elem
 }
-fun choose_middle (a: Int, b: Int, c: Int):Int {
+fun minOfTrhree (a: Int, b: Int, c: Int):Int {
     val arr = arrayOf(a,b,c)
-    var min = if (arr[0] > arr[1] && arr[0] < arr[2] || arr[0] < arr[1] && arr[0] > arr[2]) {
-        return arr[0].toInt()
+    var smalest = arr[0]
+    for (index in arr.indices){
+        if (smalest > arr[index]){
+            smalest = arr[index]
+        }
     }
-    else if (arr[1]> arr[2] && arr[1] < arr[0] || arr[1]<arr[2] && arr[1]>arr[0]){
-        return arr[1].toInt()
+    return smalest
+}
+fun chooseMin(arr: Array<Int>):Int{
+    var smalest = arr[0]
+    for (index in arr.indices){
+        if (smalest > arr[index]){
+            smalest = arr[index]
+        }
     }
-    else if (arr[2]> arr[0] && arr[2] < arr[1] || arr[2] < arr[0] && arr[2] > arr[1]){
-        return arr[2].toInt()
-    }
-    else if (arr[0]==arr[1] && arr[0] != arr[2]){
-        return arr[0].toInt()
-    }
-    else if (arr[1]==arr[2] && arr[1] != arr[0]){
-        return arr[1].toInt()
-    }
-    else if (arr[2]==arr[0] && arr[2] != arr[1]){
-        return arr[2].toInt()
-    }
-    else return arr[0].toInt()
+    return smalest
+}
 
+fun middleOfThree (a: Int, b: Int, c: Int):Int {
+    val arr = arrayOf(a,b,c)
+    val max = maxOfThree(a,b,c)
+    val min = minOfTrhree(a,b,c)
+    var middle = arr[0]
+    for (index in arr.indices){
+        if (arr[index] != max && arr[index] != min){
+            middle = arr[index]
+            return middle
+        }
+    }
+    return middle
 }
-fun choose_type_triangle (a: Int,b: Int, c: Int): String{
-    val triangle = is_triangle(a, b, c)
-    val hipotenus = choose_max(a, b, c)
-    val min = choose_min(a, b, c)
-    val middle = choose_middle(a, b, c)
+fun isTriangleRectangular (a: Int,b: Int, c: Int):String{
+    val triangle = isTriangle(a, b, c)
+    val hipotenus = maxOfThree(a, b, c)
+    val min = minOfTrhree(a, b, c)
+    val middle = middleOfThree(a, b, c)
+    if (triangle == true && exponentiate(min,2) + exponentiate(middle,2) == exponentiate(hipotenus,2)){
+        return "Треугольник существует, треугольник прямоугольный"
+    } else if (triangle == false){
+       return "Не треугольник"
+    } else {
+        return "Другой треугольник"
+    }
+}
+/*fun choose_type_triangle (a: Int,b: Int, c: Int): String{
+    val triangle = isTriangle(a, b, c)
+    val hipotenus = chooseMax(a, b, c)
+    val min = chooseMin(a, b, c)
+    val middle = chooseMiddle(a, b, c)
     if (triangle == true && exponentiate(min,2) + exponentiate(middle,2) == exponentiate(hipotenus,2)){
         return "Треугольник существует, треугольник прямоугольный"
     }
@@ -102,6 +130,15 @@ fun choose_type_triangle (a: Int,b: Int, c: Int): String{
     }
     else return "Другой треугольник"
 }
+fun main (){
+    val arr = arrayOf(1,2,3)
+    var elem = arr[0]
+    for (index in arr.indices){
+        if (elem < arr[index]){
+            elem = arr[index]
+        }
+    }
+}*/
 
 
 

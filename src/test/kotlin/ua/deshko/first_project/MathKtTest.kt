@@ -1,16 +1,18 @@
 package ua.deshko.first_project
 
-import choose_max
-import choose_middle
-import choose_min
-import choose_type_triangle
 import segmentation
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import difference
 import exponentiate
 import factorial
-import is_triangle
+import isTriangle
+import isTriangleRectangular
+import chooseMax
+import chooseMin
+import maxOfThree
+import middleOfThree
+import minOfTrhree
 import summ
 
 
@@ -49,7 +51,7 @@ class MathKtTest {
     @Test
     fun `Test6 25 delim na 0 = 0,0`() {
         val dannie = segmentation(25, 0)
-        assertEquals(0.0F, dannie)
+        assertSame(0,dannie)
     }
 
     @Test
@@ -88,45 +90,63 @@ class MathKtTest {
         assertEquals(3628800, dannie)
     }
     @Test
+    fun `Test12,2 0! = 0`() {
+        val dannie = factorial(0)
+        assertEquals(0, dannie)
+    }
+    @Test
     fun `Test13 Triangle is exist`(){
-        var dannie = is_triangle(4,4,5)
+        var dannie = isTriangle(4,4,5)
         assertTrue(dannie)
     }
     @Test
     fun `Test14 Triangle is not exist`(){
-        var dannie = is_triangle(10,4,5)
+        var dannie = isTriangle(10,4,5)
         assertFalse(dannie)
     }
     @Test
-    fun `Test15 Choose max int a=3,b=4,c=5   max 5`(){
-        var dannie = choose_max(3,4,5)
+    fun `Test15 Choose max of three int a=3,b=4,c=5   max 5`(){
+        var dannie = maxOfThree(3,4,5)
         assertEquals(5,dannie)
     }
     @Test
-    fun `Test16 Choose min int a=3,b=4,c=5   min 3`(){
-        val dannie = choose_min(3,4,5)
+    fun `Test16 Choose min of three int a=3,b=4,c=5   min 3`(){
+        val dannie = minOfTrhree(3,4,5)
         assertEquals(3,dannie)
     }
     @Test
-    fun `Test17 Choose middle int a=3,b=4,c=5   middle 4`() {
-        val dannie = choose_middle(3, 4, 5)
+    fun `Test17 Choose middle of three int a=3,b=4,c=5   middle 4`() {
+        val dannie = middleOfThree(3, 4, 5)
         assertEquals(4,dannie)
     }
     @Test
+    fun `Test18 rectangular triangle a=3, b=4, c=5`(){
+        val dannie = isTriangleRectangular(3,4,5)
+        assertEquals("Треугольник существует, треугольник прямоугольный",dannie)
+    }
+    @Test
+    fun `Test 19 choose max  1 2 3 4 5 = 5`(){
+        val arr_test = arrayOf(1,2,3,4,5)
+        val dannie = chooseMax(arr_test)
+        assertEquals(5,dannie)
+    }
+    @Test
+    fun `Test 20 choose min  4,4,5,4,3 = 3`(){
+        val arr_test = arrayOf(4,4,5,4,3)
+        val dannie = chooseMin(arr_test)
+        assertEquals(3,dannie)
+    }
+    /*@Test
     fun `Test18 equilateral triangle a=4,b=4,c=4  ` (){
         var dannie =choose_type_triangle(4,4,4)
         assertEquals("Треугольник существует, треугольник равносторонний",dannie)
     }
     @Test
-    fun `Test19 right triangle a=3, b=4, c=5`(){
-        var dannie = choose_type_triangle(3,4,5)
-        assertEquals("Треугольник существует, треугольник прямоугольный",dannie)
-    }
-    @Test
     fun `Test20 scalene triangle a=3, b=5, c=6`(){
         var dannie = choose_type_triangle(6,5,3)
         assertEquals("Треугольник существует, треугольник разносторонний",dannie)
-    }
+    }*/
+
 }
 
 
