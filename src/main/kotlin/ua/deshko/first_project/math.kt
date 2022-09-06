@@ -1,31 +1,31 @@
+import kotlin.math.max
 
 fun summ (a:Int, b:Int):Int = a + b
 fun difference (a:Int,b:Int):Int = a - b
 fun multipl (a:Int, b: Int) :Int = a * b
 fun segmentation (numerator:Int, denominator: Int):Float{
-    val a2 = numerator.toFloat()
-    val b2 = denominator.toFloat()
-    if (b2 > 0F){
-        return a2/b2
-    }
-return a2/b2
-}
-fun exponentiate (baseOfDegree: Int, degree: Int): Float {
-    var stepen = baseOfDegree.toFloat()
-    var x = 1
-        while (x < degree) {
-            stepen = stepen * baseOfDegree
-            x++
-        }
-    if (degree>0){
-        return stepen
-    }
-    else if(degree<0){
-        return 1/stepen
-    }
-    else return 1.0F
+    val a2 = numerator
+    val b2 = denominator
+    return a2/b2.toFloat()
 }
 
+fun exponentiate (baseOfDegree: Int, degree: Int): Number {
+    if (degree>0){
+        return expont(baseOfDegree,degree)
+    }
+    if(degree<0){
+        return 1.toDouble()/expont(baseOfDegree,-degree)
+    }
+    return 1
+}
+
+private fun expont (baseOfDegree: Int,degree: Int):Int{
+    var result = 1
+    for (x in 1..degree){
+        result = result * baseOfDegree
+    }
+    return result
+}
 fun factorial (base:Int):Int{
     var x = 1
     var factorial = 1
@@ -59,15 +59,12 @@ fun maxOfThree (a: Int, b: Int, c: Int):Int {
     }
     return smalest
 }
-fun chooseMax(arr:Array<Int>):Int{
-    var largest_elem = arr[0]
-    for (index in arr.indices){
-        if (largest_elem < arr[index]){
-            largest_elem = arr[index]
-        }
-    }
-    return largest_elem
+fun chooseMax(vararg ints:Int):Int{
+    var bigest = 1
+    repeat(ints.size) {if (ints[it] > bigest) bigest = ints[it]}
+    return bigest
 }
+
 fun minOfTrhree (a: Int, b: Int, c: Int):Int {
     val arr = arrayOf(a,b,c)
     var smalest = arr[0]
@@ -80,11 +77,7 @@ fun minOfTrhree (a: Int, b: Int, c: Int):Int {
 }
 fun chooseMin(arr: Array<Int>):Int{
     var smalest = arr[0]
-    for (index in arr.indices){
-        if (smalest > arr[index]){
-            smalest = arr[index]
-        }
-    }
+    repeat(arr.size) {if (arr[it] < smalest) smalest = arr[it]}
     return smalest
 }
 
@@ -101,19 +94,25 @@ fun middleOfThree (a: Int, b: Int, c: Int):Int {
     }
     return middle
 }
-fun isTriangleRectangular (a: Int,b: Int, c: Int):String{
+fun isHippotenuse (a:Int,b:Int,c:Int):Boolean {
+    if (expont(maxOfThree(a, b, c), 2) == expont(minOfTrhree(a, b, c), 2)
+        + expont(middleOfThree(a, b, c), 2)) {
+        return true
+    }else return false
+}
+fun isTriangleRectangular (a: Int,b: Int, c: Int):String {
     val triangle = isTriangle(a, b, c)
-    val hipotenus = maxOfThree(a, b, c)
-    val min = minOfTrhree(a, b, c)
-    val middle = middleOfThree(a, b, c)
-    if (triangle == true && exponentiate(min,2) + exponentiate(middle,2) == exponentiate(hipotenus,2)){
+    val hippotenuse = isHippotenuse(a, b, c)
+    if (triangle == true && hippotenuse == true) {
         return "Треугольник существует, треугольник прямоугольный"
-    } else if (triangle == false){
-       return "Не треугольник"
+    } else if (triangle == false) {
+        return "Не треугольник"
     } else {
         return "Другой треугольник"
     }
 }
+
+
 /*fun choose_type_triangle (a: Int,b: Int, c: Int): String{
     val triangle = isTriangle(a, b, c)
     val hipotenus = chooseMax(a, b, c)

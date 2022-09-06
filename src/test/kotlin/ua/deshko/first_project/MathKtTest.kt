@@ -7,9 +7,10 @@ import difference
 import exponentiate
 import factorial
 import isTriangle
-import isTriangleRectangular
+//import isTriangleRectangular
 import chooseMax
 import chooseMin
+import isTriangleRectangular
 import maxOfThree
 import middleOfThree
 import minOfTrhree
@@ -63,19 +64,19 @@ class MathKtTest {
     @Test
     fun `Test8 2 v stepeni 10 = 1024`() {
         val dannie = exponentiate(2, 10)
-        assertEquals(1024F, dannie)
+        assertEquals(1024, dannie)
     }
 
     @Test
     fun `Test9 2 v stepeni -1 = 0,5`() {
         val dannie = exponentiate(2, -1)
-        assertEquals(0.5F, dannie)
+        assertEquals(0.5, dannie)
     }
 
     @Test
     fun `Test10 100 v stepeni 0 = 1`() {
         var dannie = exponentiate(100, 0)
-        assertEquals(1F, dannie)
+        assertEquals(1, dannie)
     }
 
     @Test
@@ -125,16 +126,15 @@ class MathKtTest {
         assertEquals("Треугольник существует, треугольник прямоугольный",dannie)
     }
     @Test
-    fun `Test 19 choose max  1 2 3 4 5 = 5`(){
-        val arr_test = arrayOf(1,2,3,4,5)
-        val dannie = chooseMax(arr_test)
-        assertEquals(5,dannie)
+    fun `Test 19 choose max  2,25,55,78,93,101 = 101`(){
+        val dannie = chooseMax(2,25,55,78,93,101)
+        assertEquals(101,dannie)
     }
     @Test
     fun `Test 20 choose min  4,4,5,4,3 = 3`(){
-        val arr_test = arrayOf(4,4,5,4,3)
+        val arr_test = arrayOf(4,2,5,4,6)
         val dannie = chooseMin(arr_test)
-        assertEquals(3,dannie)
+        assertEquals(2,dannie)
     }
     /*@Test
     fun `Test18 equilateral triangle a=4,b=4,c=4  ` (){
