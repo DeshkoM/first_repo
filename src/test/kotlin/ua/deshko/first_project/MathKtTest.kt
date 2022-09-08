@@ -10,6 +10,7 @@ import isTriangle
 //import isTriangleRectangular
 import chooseMax
 import chooseMin
+import findAssumedCathetuses
 import isTriangleRectangular
 import maxOfThree
 import middleOfThree
@@ -123,7 +124,7 @@ class MathKtTest {
     @Test
     fun `Test18 rectangular triangle a=3, b=4, c=5`(){
         val dannie = isTriangleRectangular(3,4,5)
-        assertEquals("Треугольник существует, треугольник прямоугольный",dannie)
+        assertTrue (dannie)
     }
     @Test
     fun `Test 19 choose max  2,25,55,78,93,101 = 101`(){
@@ -135,6 +136,12 @@ class MathKtTest {
         val arr_test = arrayOf(4,2,5,4,6)
         val dannie = chooseMin(arr_test)
         assertEquals(2,dannie)
+    }
+    @Test
+    fun `findAssumedCathetuses 3 4 5`(){
+        val list_1 = mutableListOf(3,4)
+        val dannie = findAssumedCathetuses(3,4,5)
+        assertEquals(list_1,dannie)
     }
     /*@Test
     fun `Test18 equilateral triangle a=4,b=4,c=4  ` (){

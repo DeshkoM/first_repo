@@ -94,22 +94,27 @@ fun middleOfThree (a: Int, b: Int, c: Int):Int {
     }
     return middle
 }
-fun isHippotenuse (a:Int,b:Int,c:Int):Boolean {
-    if (expont(maxOfThree(a, b, c), 2) == expont(minOfTrhree(a, b, c), 2)
-        + expont(middleOfThree(a, b, c), 2)) {
-        return true
-    }else return false
+fun findAssumedCathetuses (a: Int, b: Int, c: Int):MutableList<Int>{
+    var arrCathetuses = mutableListOf(a,b,c)
+    val max = maxOfThree(a,b,c)
+    arrCathetuses.removeIf{it == max}
+    return arrCathetuses
 }
-fun isTriangleRectangular (a: Int,b: Int, c: Int):String {
+fun isHippotenuse (a:Int,b:Int,c:Int):Boolean {
+    val assumedCathetuses = findAssumedCathetuses(a, b, c)
+    if (expont(maxOfThree(a, b, c), 2) ==
+        expont(assumedCathetuses[0]+assumedCathetuses[1],2)-
+        2*assumedCathetuses[0]+assumedCathetuses[1])
+        {
+        return true
+    } else return false
+}
+fun isTriangleRectangular (a: Int,b: Int, c: Int):Boolean {
     val triangle = isTriangle(a, b, c)
     val hippotenuse = isHippotenuse(a, b, c)
     if (triangle == true && hippotenuse == true) {
-        return "Треугольник существует, треугольник прямоугольный"
-    } else if (triangle == false) {
-        return "Не треугольник"
-    } else {
-        return "Другой треугольник"
-    }
+        return true
+    } else return false
 }
 
 
