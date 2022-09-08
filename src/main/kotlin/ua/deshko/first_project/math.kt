@@ -95,26 +95,21 @@ fun middleOfThree (a: Int, b: Int, c: Int):Int {
     return middle
 }
 fun findAssumedCathetuses (a: Int, b: Int, c: Int):MutableList<Int>{
-    var arrCathetuses = mutableListOf(a,b,c)
+    var listCathetuses = mutableListOf(a,b,c)
     val max = maxOfThree(a,b,c)
-    arrCathetuses.removeIf{it == max}
-    return arrCathetuses
+    listCathetuses.removeIf{it == max}
+    return listCathetuses
 }
 fun isHippotenuse (a:Int,b:Int,c:Int):Boolean {
     val assumedCathetuses = findAssumedCathetuses(a, b, c)
-    if (expont(maxOfThree(a, b, c), 2) ==
-        expont(assumedCathetuses[0]+assumedCathetuses[1],2)-
-        2*assumedCathetuses[0]+assumedCathetuses[1])
-        {
-        return true
-    } else return false
+    return (expont(maxOfThree(a, b, c), 2) ==
+        expont(assumedCathetuses[0],2)+expont(assumedCathetuses[1],2))
 }
 fun isTriangleRectangular (a: Int,b: Int, c: Int):Boolean {
     val triangle = isTriangle(a, b, c)
     val hippotenuse = isHippotenuse(a, b, c)
-    if (triangle == true && hippotenuse == true) {
-        return true
-    } else return false
+    if (triangle == false) return false
+    return (hippotenuse == true)
 }
 
 
