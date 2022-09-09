@@ -123,7 +123,7 @@ class MathKtTest {
     }
     @Test
     fun `Test18 rectangular triangle a=3, b=4, c=5`(){
-        val dannie = isTriangleRectangular(3,4,5)
+        val dannie = isTriangleRectangular(4,5,3)
         assertTrue (dannie)
     }
     @Test

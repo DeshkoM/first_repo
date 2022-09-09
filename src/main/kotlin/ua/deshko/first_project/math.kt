@@ -103,13 +103,14 @@ fun findAssumedCathetuses (a: Int, b: Int, c: Int):MutableList<Int>{
 fun isHippotenuse (a:Int,b:Int,c:Int):Boolean {
     val assumedCathetuses = findAssumedCathetuses(a, b, c)
     return (expont(maxOfThree(a, b, c), 2) ==
-        expont(assumedCathetuses[0],2)+expont(assumedCathetuses[1],2))
+        expont(assumedCathetuses[0]+assumedCathetuses[1],2)-
+                2*assumedCathetuses[0]*assumedCathetuses[1])
 }
 fun isTriangleRectangular (a: Int,b: Int, c: Int):Boolean {
     val triangle = isTriangle(a, b, c)
+    if (!triangle) return false
     val hippotenuse = isHippotenuse(a, b, c)
-    if (triangle == false) return false
-    return (hippotenuse == true)
+    return (hippotenuse)
 }
 
 
